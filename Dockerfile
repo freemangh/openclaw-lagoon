@@ -33,9 +33,7 @@ RUN openclaw --version
 
 # Optional: extra Alpine packages for browser automation or other needs
 ARG EXTRA_APK_PACKAGES=""
-RUN if [ -n "$EXTRA_APK_PACKAGES" ]; then \
-      apk add --no-cache $EXTRA_APK_PACKAGES; \
-    fi
+RUN apk add --no-cache openssh-client $EXTRA_APK_PACKAGES
 
 # Copy Lagoon entrypoint scripts
 # 05-ssh-key.sh: Automated SSH key setup for container (handles Lagoon and custom environments)
@@ -46,6 +44,8 @@ COPY .lagoon/50-shell-config.sh /lagoon/entrypoints/50-shell-config.sh
 COPY .lagoon/60-amazeeai-config.sh /lagoon/entrypoints/60-amazeeai-config.sh
 
 ARG LAGOON_SSH_PRIVATE_KEY
+
+COPY .lagoon/ssh_config /etc/ssh/ssh_config
 # Copy the generated SSH key by Lagoon into the container
 RUN /lagoon/entrypoints/05-ssh-key.sh
 
