@@ -14,7 +14,7 @@ services:
     volumes:
       - ./.local:/home/.openclaw
     ports:
-      - "3001:3000"
+      - "3000:3000"
     labels:
       lagoon.type: node-persistent
       lagoon.persistent: /home/.openclaw
