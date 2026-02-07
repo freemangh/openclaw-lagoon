@@ -58,7 +58,7 @@ ENV NODE_ENV=production \
     PATH="/home/.openclaw/npm/bin:/home/.openclaw/.local/share/pnpm:$PATH" \
     LAGOON=openclaw
 
-WORKDIR /home/.openclaw/workspace
+WORKDIR /home/.openclaw
 
 # Port 3000 already exposed by base image
 CMD ["openclaw", "gateway", "--bind", "lan"]
