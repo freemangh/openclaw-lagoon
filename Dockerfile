@@ -6,11 +6,8 @@ RUN apk add --no-cache git
 
 # Install openclaw globally, skipping postinstall scripts that build native code
 # This disables local LLM support (node-llama-cpp) but works fine with API providers like amazeeai
-ARG OPENCLAW_VERSION=2026.2.1
+ARG OPENCLAW_VERSION=2026.2.6-3
 RUN npm install -g --ignore-scripts openclaw@${OPENCLAW_VERSION}
-
-# Run only the essential postinstall scripts (not node-llama-cpp)
-RUN cd /usr/local/lib/node_modules/openclaw && node scripts/postinstall.js || true
 
 # Verify installation
 RUN openclaw --version
