@@ -142,7 +142,7 @@ async function discoverModels() {
     // baseUrl is injected directly, apiKey uses env var reference for security
     const providerConfig = {
       baseUrl: baseUrl,
-      api: 'anthropic-messages',
+      api: 'openai-completions',
       models: models,
     };
 
