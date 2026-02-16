@@ -1,1 +1,31 @@
 docker-compose-yaml: docker-compose.yml
+
+
+project: openclaw
+
+environments:
+  main:
+    routes:
+      - openclaw-gateway:
+          - openclaw.${LAGOON_ROUTE_PREFIX}.${LAGOON_DOMAIN}:
+              tls-acme: true
+    cronjobs:
+      # Optional: Health check cron
+      - name: health-check
+        schedule: "*/5 * * * *"
+        command: curl -s http://localhost:3000/health || true
+        service: openclaw-gateway
+
+environment_variables:
+  # Direct Provider (choose one)
+  # ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY}"
+  OPENAI_API_KEY: "${OPENAI_API_KEY}"
+
+  # OR amazee.ai proxy
+  # AMAZEEAI_BASE_URL: "${AMAZEEAI_BASE_URL}"
+  # AMAZEEAI_API_KEY: "${AMAZEEAI_API_KEY}"
+  # AMAZEEAI_DEFAULT_MODEL: "${AMAZEEAI_DEFAULT_MODEL}"
+
+  # Optional: Channels
+  SLACK_BOT_TOKEN: "${SLACK_BOT_TOKEN}"
+  SLACK_APP_TOKEN: "${SLACK_APP_TOKEN}"
