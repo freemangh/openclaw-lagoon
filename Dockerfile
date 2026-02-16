@@ -54,10 +54,10 @@ RUN chmod +x /bin/fix-permissions /lagoon/entrypoints.sh && \
 # Copy Lagoon entrypoint scripts
 # 05-ssh-key.sh: Automated SSH key setup for container (handles Lagoon and custom environments)
 # 50-shell-config.sh: Custom bash prompt with lobster branding
-# 60-amazeeai-config.sh: Model discovery from amazee.ai
+# 60-provider-config.sh: Direct provider config (OpenAI, Anthropic) - bypasses amazee.ai
 COPY .lagoon/05-ssh-key.sh /lagoon/entrypoints/05-ssh-key.sh
 COPY .lagoon/50-shell-config.sh /lagoon/entrypoints/50-shell-config.sh
-COPY .lagoon/60-amazeeai-config.sh /lagoon/entrypoints/60-amazeeai-config.sh
+COPY .lagoon/60-provider-config.sh /lagoon/entrypoints/60-provider-config.sh
 COPY .lagoon/ssh_config /etc/ssh/ssh_config
 
 # Create data directories for persistent config and npm global packages

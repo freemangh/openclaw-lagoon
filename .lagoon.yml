@@ -7,7 +7,7 @@ environments:
   main:
     routes:
       - openclaw-gateway:
-          - openclaw.${LAGOON_ROUTE_PREFIX}.${LAGOON_DOMAIN}:
+          - openclaw.ospo-dev.miralabs.dev:
               tls-acme: true
     cronjobs:
       # Optional: Health check cron

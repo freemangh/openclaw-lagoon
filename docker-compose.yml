@@ -8,8 +8,6 @@ services:
       context: .
       dockerfile: Dockerfile
     user: "10000"
-    env_file:
-      - .env
     volumes:
       - ./.local:/home/.openclaw
     ports:
