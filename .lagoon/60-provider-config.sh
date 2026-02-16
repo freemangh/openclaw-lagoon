@@ -35,7 +35,13 @@ const config = {
 // Configure Anthropic if API key is set
 if (process.env.ANTHROPIC_API_KEY) {
   config.models.providers.anthropic = {
-    apiKey: '${ANTHROPIC_API_KEY}'
+    apiKey: '${ANTHROPIC_API_KEY}',
+    baseUrl: 'https://api.anthropic.com',
+    models: [
+      { id: 'claude-opus-4-6', name: 'Claude Opus 4.6', contextWindow: 200000, maxTokens: 32000, input: ['text'], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } },
+      { id: 'claude-sonnet-4-5-20250929', name: 'Claude Sonnet 4.5', contextWindow: 200000, maxTokens: 16384, input: ['text'], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } },
+      { id: 'claude-haiku-4-5-20251001', name: 'Claude Haiku 4.5', contextWindow: 200000, maxTokens: 8192, input: ['text'], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } }
+    ]
   };
   console.log('[provider-config] Configured Anthropic provider');
 }
@@ -43,7 +49,15 @@ if (process.env.ANTHROPIC_API_KEY) {
 // Configure OpenAI if API key is set
 if (process.env.OPENAI_API_KEY) {
   config.models.providers.openai = {
-    apiKey: '${OPENAI_API_KEY}'
+    apiKey: '${OPENAI_API_KEY}',
+    baseUrl: 'https://api.openai.com/v1',
+    api: 'openai-completions',
+    models: [
+      { id: 'gpt-5.2', name: 'GPT-5.2', contextWindow: 128000, maxTokens: 16384, input: ['text'], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } },
+      { id: 'gpt-4.1', name: 'GPT-4.1', contextWindow: 128000, maxTokens: 16384, input: ['text'], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } },
+      { id: 'gpt-4o', name: 'GPT-4o', contextWindow: 128000, maxTokens: 16384, input: ['text'], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } },
+      { id: 'o3-mini', name: 'o3-mini', reasoning: true, contextWindow: 200000, maxTokens: 100000, input: ['text'], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 } }
+    ]
   };
   console.log('[provider-config] Configured OpenAI provider');
 }
